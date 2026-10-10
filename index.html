@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Online store starter with wallet deposits and shopping cart.">
+  <title>My Online Store</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#">My Online Store</a>
+    <nav><a href="#products">Products</a><a href="#wallet">My wallet</a><a href="#account">Account</a></nav>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">SHOP ONLINE</p>
+      <h1>Find something you love.</h1>
+      <p>Browse products, fund your wallet and check out securely.</p>
+    </section>
+
+    <section id="account" class="panel">
+      <h2>Account</h2>
+      <p class="muted">Create an account or sign in to use your wallet.</p>
+      <form id="auth-form" class="form-grid">
+        <label>Email<input id="email" type="email" autocomplete="email" required></label>
+        <label>Password<input id="password" type="password" autocomplete="current-password" minlength="8" required></label>
+        <div class="actions">
+          <button type="submit" id="signin-btn">Sign in</button>
+          <button type="button" class="secondary" id="signup-btn">Create account</button>
+          <button type="button" class="secondary hidden" id="signout-btn">Sign out</button>
+        </div>
+      </form>
+      <p id="auth-status" class="status" role="status">Not signed in.</p>
+    </section>
+
+    <section id="wallet" class="panel">
+      <div class="section-heading"><div><h2>My wallet</h2><p class="muted">Wallet balance is retrieved from the secure backend.</p></div>
+      <div class="balance" id="wallet-balance">Sign in to view</div></div>
+      <form id="deposit-form" class="deposit-form">
+        <label>Deposit amount (NGN)<input id="deposit-amount" type="number" min="100" step="1" placeholder="5000" required></label>
+        <button type="submit">Deposit with Paystack</button>
+      </form>
+      <p class="muted small">Use test mode until your payment flow has been verified. Never send secret keys to this page.</p>
+      <h3>Recent wallet transactions</h3>
+      <ul id="transactions" class="transaction-list"><li class="muted">Sign in to view transactions.</li></ul>
+    </section>
+
+    <section id="products" class="panel">
+      <div class="section-heading"><div><h2>Products</h2><p class="muted">Example products; replace these with your own catalogue.</p></div></div>
+      <div id="product-list" class="product-grid">
+        <article class="product-card"><div class="product-art">A</div><h3>Sample product A</h3><p>₦5,000</p><button data-demo-product="sample-a">Buy sample A</button></article>
+        <article class="product-card"><div class="product-art">B</div><h3>Sample product B</h3><p>₦8,500</p><button data-demo-product="sample-b">Buy sample B</button></article>
+        <article class="product-card"><div class="product-art">C</div><h3>Sample product C</h3><p>₦12,000</p><button data-demo-product="sample-c">Buy sample C</button></article>
+      </div>
+      <p class="notice">These sample buttons are not connected to checkout until you add real products to the database and deploy the order function. The browser never determines the final price.</p>
+    </section>
+    <footer><p>© <span id="year"></span> My Online Store · Secure checkout setup required before launch.</p></footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
